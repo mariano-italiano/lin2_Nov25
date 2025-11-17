@@ -1,0 +1,12 @@
+[Unit]
+Description=My custom webserver from Docker
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/bin/docker start -a webserver
+ExecStop=/bin/docker stop -t 2 webserver
+Restart=always
+
+[Install]
+WantedBy=default.target

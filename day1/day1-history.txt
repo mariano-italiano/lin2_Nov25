@@ -1,0 +1,260 @@
+tar --help 
+df -h
+tar -cvf archiwum.tar /usr/bin/
+ls -lah 
+du -sh /usr/
+du -sh /usr/*
+tar --help 
+tar -cvJf archiwum-xz.tar.xz /usr/bin/
+ls -lah 
+tar -cvjf archiwum-xz.tar.bz2 /usr/bin/
+ls -lah 
+cd /tmp
+mkdir test-tar
+cd test-tar
+tar -xf /root/archiwum-xz.tar.bz2 
+ls- la 
+ls -la 
+ls -la usr/bin/
+tar -xf /root/archiwum-xz.tar.xz  
+ls- la 
+ls -la
+cd
+ls -la 
+tar tvf archiwum.tar 
+cat /etc/services 
+cat /etc/services |grep -i http
+ip a 
+nmap 192.168.1.0/24 
+nmap 192.168.1.90
+nmap 192.168.1.1
+ethtool -h
+ethtool -h | grep "-S"
+ethtool -S ens33 
+ip -s link 
+ip -s link ens33
+ip -s link 
+ip a s
+ip address show 
+ip r s
+route -s
+route -n
+ip r s
+netstat -vtnulp 
+ss -ltuna
+dnf install net-tools -y
+dnf provides netstat
+netstat -vtnulp 
+tcpdump 
+tcpdump 
+tcpdump -i ens33 
+tcpdump -i ens33 tcp port 22 
+tcpdump -i ens33 tcp port 443
+tcpdump -i ens33 src 192.168.1.90
+tcpdump -i ens33 dst 192.168.1.1 -w traffic.pcap
+ls -lah traffic.pcap 
+dnf install -y wiresharl
+dnf install -y wireshark
+cp -rp traffic.pcap /tmp/
+chown 777 /tmp/traffic.pcap 
+iostat
+netstat 
+netstat --help 
+netstat -i
+ip -s link
+vmstat 
+vmstat 5
+sar -A
+systemctl status sysstat
+systemctl start sysstat
+systemctl status sysstat
+sar -A
+vi /etc/cron.d/systat 
+vi /etc/cron.d/0hourly 
+vi /etc/cron.daily/
+find / -name sysstat 
+top
+uptime
+cat /proc/cpuinfo 
+uptime
+top
+free -m
+top
+top -u student 
+htop 
+dnf install epel-release
+htop 
+dnf install htop
+htop
+dnf install libsensors -y
+dnf provides libsensors
+htop
+free -m
+cat /proc/meminfo 
+cd /var/log
+ls -la 
+less secure 
+tail -f secure
+ls -la 
+ls -la audit/audit.log 
+cat audit/audit.log
+tail -f audit/audit.log
+ls -la 
+cat kdump.log
+ls -la 
+lastlog 
+vi lastlog 
+ls -la
+cd
+dnf install tuned -y
+systemctl status tuned
+systemctl start tuned
+systemctl status tuned
+tuned-adm active 
+tuned-adm list 
+sysctl -a > guest-tuned.txt
+tuned-adm profile network-throughput
+sysctl -a > network-tuned.txt
+diff network-tuned.txt  guest-tuned.txt 
+tuned-adm recommend
+tuned-adm profile virtual-guest
+systemctl stop tuned.service 
+htop
+iostat 
+iostat 3
+vmstat 3
+iostat 3
+htop
+iostat 3
+ls -la /lib/systemd/system/runlevel*.target 
+init 3
+systemctl isolate graphical.target 
+systemctl isolate multi-user.target 
+systemctl get-default 
+systemctl set-default multi-user.target 
+ls -la /etc/systemd/system/default.target
+systemctl set-default graphical.target 
+ls -la /etc/systemd/system/default.target
+systemctl set-default multi-user.target 
+echo $PATH
+systemctl list-units 
+systemctl list-units --type target
+systemctl list-units --type path
+systemctl list-unit-files
+systemctl list-unit-files --state=enabled
+systemctl list-unit-files --state=running --type=service
+systemctl list-unit-files --type=service
+systemctl list-unit-files --type=service --state=running
+systemctl list-unit-files 
+systemctl list-units 
+systemctl list-unit-files --type=service --state=running
+systemctl list-unit-files --type=service --state running
+systemctl list-units--type=service --state=running
+systemctl list-units --type=service --state=running
+systemctl status chronyd.service
+systemctl status chronyd 
+systemctl stop chronyd 
+systemctl status chronyd 
+systemctl start chronyd 
+systemctl status chronyd 
+systemctl stop chronyd 
+systemctl status chronyd 
+systemctl enable --now chronyd 
+systemctl status chronyd 
+systemctl disable --now  chronyd 
+ls -la etc/systemd/system/multi-user.target.wants
+ls -la /etc/systemd/system/multi-user.target.wants
+systemctl enable --now chronyd 
+ls -la /etc/systemd/system/multi-user.target.wants
+vi /usr/lib/systemd/system/sshd.service 
+sudo dnf remove docker                   docker-client                   docker-client-latest                   docker-common                   docker-latest                   docker-latest-logrotate                   docker-logrotate                   docker-engine
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+docker run -d --name webserver -p 8080:80 nginx:1.19.2
+docker ps 
+ip a
+curl http://192.168.1.90:8080
+docker exec -it webserver -- bash
+docker exec -it webserver -- sh
+docker exec -it webserver bash
+docker stop webserver 
+docker ps -a
+cp -rp /usr/lib/systemd/system/sshd.service /etc/systemd/system/webserver.service 
+vi /etc/systemd/system/webserver.service
+which docker
+vi /etc/systemd/system/webserver.service
+systemctl status webserver.service 
+systemctl daemon-reload  
+systemctl status webserver.service 
+docker ps 
+systemctl enable --now webserver.service 
+systemctl status webserver.service 
+docker ps 
+systemctl stop webserver.service 
+docker ps 
+systemctl status webserver.service 
+mv /home/student/lin2_Nov25/ .
+cp -rp /etc/systemd/system/webserver.service lin2_Nov25/day1/
+ls -la 
+cd lin2_Nov25/
+git status
+crontab -l 
+crontab -l -u student
+crontab -e 
+date
+crontab -e 
+crontab -l 
+tail -F /tmp/crontab-root.log
+date
+tail -F /tmp/crontab-root.log
+echo "hello-at-message" > /tmp/hello-msg | at 15:10
+atq 
+at -l
+at -c 1
+find / -name marcinDELIMITER4e36489a
+at -l
+ls -la /tmp/hello-msg 
+cat /tmp/hello-msg
+systemctl restart chronyd | at now +5 minutes
+ls -la /var/spool/at/
+ls -la /var/spool/at/a0000201c073fa 
+cat /var/spool/at/a0000201c073fa
+vi flask-app.py
+chmod +x flask-app.py
+python3 flask-app.py 
+pip install Flask
+python3 flask-app.py 
+chmod 777 flask-app.py
+cp -rp lin2_Nov25/flask-app.py /tmp/
+cp -rp /tmp/flask-app.py lin2_Nov25/day1/
+cd lin2_Nov25/
+ls -la
+rm flask-app.py 
+cd day1/
+ls -l a
+ls -la
+vi flask-app.service
+cp -rp /etc/systemd/system/webserver.service .
+cp webserver.service flask-app.service
+vi flask-app.service
+systemctl daemon-reload 
+cp -rp flask-app.py /usr/bin/
+systemctl daemon-reload 
+systemctl status flask-app
+cp -rp flask-app.service /etc/systemd/system
+systemctl daemon-reload 
+systemctl status flask-app.service 
+systemctl start flask-app.service 
+systemctl status network.service 
+systemctl status network.target
+vi /etc/systemd/system/flask-app.service
+systemctl daemon-reload 
+systemctl start flask-app.service 
+systemctl status flask-app.service 
+netstat -vatlnp " grep 5000
+netstat -vatlnp | grep 5000
+history 
+history | awk '$1 > 25' | cut -c 8-
+history | awk '$1 > 25' | cut -c 8- > day1-history.txt

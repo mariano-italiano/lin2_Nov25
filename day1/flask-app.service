@@ -1,0 +1,11 @@
+[Unit]
+Description=My custom Flask application
+After=network.service
+Requires=network.service
+
+[Service]
+ExecStart=/bin/python3 /usr/bin/flask-app.py
+User=student
+
+[Install]
+WantedBy=default.target
