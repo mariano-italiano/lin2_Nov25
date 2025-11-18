@@ -1,0 +1,433 @@
+MYDIR=$(pwd)
+echo $MYDIR 
+pwd
+cp .vimrc .
+cd /tmp
+ls 
+cp /home/student/.vimrc .
+ls 
+ls -la 
+cd
+ls -lai 
+cat /proc/filesystems 
+cat /proc/filesystems | grep -v "nodev"
+df -h
+df -hT
+man dd
+ln -s 
+ln --help
+echo "test file in tmp" > /tmp/plik1
+ls -la /tmp/plik1
+ln -s /tmp/plik1 softlink 
+ls -la 
+ls -la /dev/
+ls -la 
+ls -lai
+ls -lai /tmp/plik1 
+vi softlink 
+vi /tmp/plik1 
+rm /tmp/plik1
+ls -la
+ vi softlink 
+ls -la
+ls -lai /tmp/plik1 
+ln /tmp/plik1 hardlink 
+touch plik2
+ln plik2 hardlink 
+ls -lai
+vi hardlink 
+vi plik2
+rm plik2
+vi plik2
+vi hardlink 
+ls -la 
+ln hardlink plik2 
+vi plik2
+vi hardlink 
+vi plik2
+ls -lai
+find . -inum 714 
+df --help
+df 
+df -h
+df -hT
+cd /home/
+du -sh * 
+cd /usr/
+ls 
+du -sh * 
+du -sh * | grep G
+cd share/
+du -sh * | grep G
+cd
+blkid 
+sudo blkid
+lsblk
+lshw 
+lshw -class disk 
+sudo lshw -class disk 
+sudo lshw -class disk -short
+sudo lshw -class network
+lsblk 
+cat /proc/partitions 
+sudo partprobe --help
+sudo partprobe -s 
+cat /proc/partitions 
+ls -la /sys/class/scsi_host/
+for i in `seq 0 2`; do echo $i; done
+for i in `seq 0 2`; do  echo "- - -" > /sys/class/scsi_host/host$i/scan; done
+for i in `seq 0 2`; do sudo echo "- - -" > /sys/class/scsi_host/host$i/scan; done
+sudo for i in `seq 0 2`; do sudo echo "- - -" > /sys/class/scsi_host/host$i/scan; done
+sudo -i
+cat /proc/partitions 
+lsblk
+fdisk /dev/sdb
+sudo fdisk /dev/sdb
+lsblk
+sudo gdisk /dev/sdb
+lsblk
+sudo blkid
+mkfs.ext4 /dev/sdb1 
+sudo mkfs.ext4 /dev/sdb1 
+sudo blkid
+sudo mkfs.xfs /dev/sdb2
+lsblk
+mkdir /ext4 /xfs
+sudo mkdir /ext4 /xfs
+mount /dev/sdb1 /ext4/
+sudo mount /dev/sdb1 /ext4/
+sudo mount /dev/sdb2 /xfs/
+df -hT
+cd /xfs/
+ls -al 
+touch file file2 test
+sudo touch file file2 test
+sudo mkdir test1 test2
+ls -al 
+cd ../ext4/
+ls -al 
+xfs_info /dev/sdb2
+df -h
+sudo umount /ext4
+cd 
+sudo umount /ext4
+sudo umount /xfs 
+df -h
+sudo gdisk /dev/sdb
+wipefs --help 
+wipefs -a /dev/sdb
+sudo wipefs -a /dev/sdb
+sudo pvcreate /dev/sdb 
+sudo pvs
+sudo pvdisplay 
+sudo pvdisplay /dev/sdb
+sudo vgcreate 
+sudo vgcreate vg_data /dev/sdb
+sudo pvs
+sudo pvdisplay /dev/sdb
+sudo vgdisplay vg_data
+sudo vgchange --help
+sudo vgchange -s 1M vg_data
+sudo vgdisplay vg_data
+sudo lvcreate --help 
+sud vgs
+sudo vgs
+lvcreate -L 500M -n lv_data vg_data 
+sudo lvcreate -L 500M -n lv_data vg_data 
+sudo vgs
+sudo lvs
+mkfs.xfs /dev/mapper/vg_data-lv_data 
+sudo mkfs.xfs /dev/mapper/vg_data-lv_data 
+sudo mkdir /data
+sudo mount /dev/vg_data/lv_data /data
+df -hT
+sudo vi /etc/fstab 
+sudo blkid 
+sudo vi /etc/fstab 
+man fstab
+man mount
+sudo vi /etc/fstab 
+df -h
+sudo umount /data
+sudo mount -a
+df -h
+sudo blkid
+xfs_admin -L APP_DATA /dev/mapper/vg_data-lv_data 
+sudo xfs_admin -L APP_DATA /dev/mapper/vg_data-lv_data 
+mount 
+mount -o remount,rw /data
+sudo mount -o remount,rw /data
+mount 
+sudo xfs_admin -L APP_DATA /dev/mapper/vg_data-lv_data 
+sudo blkid
+sudo vi /etc/fstab 
+umount /data
+sudo umount /data
+sudo mount -a
+df -h
+mount 
+cd data
+cd /data
+sudo touch file
+chmod +x file
+sudo chmod +x file
+ls -al 
+sudo ./file
+sudo mount -o remount,exec /data
+sudo ./file
+cd /dev/mapper
+ls -la 
+cd ../dm-4
+ls -la ../dm-4
+cd ..
+ls -la dm*
+ls -la vg*
+ls -la 
+cd vg_data/
+ls -la 
+ls -la ../dm-4
+cd
+df -h
+cd /data
+sudo dd if=/dev/urandom of=bigfile1 bs=1M count=395
+df -h
+sudo vgs
+sudo lvextend -l +100%FREE /dev/mapper/vg_data-lv_data
+sudo lvs
+sudo vgs
+df -h
+df -hT
+xfs_growfs /dev/mapper/vg_data-lv_data
+sudo xfs_growfs /dev/mapper/vg_data-lv_data
+df -hT
+sudo dd if=/dev/urandom of=bigfile1 bs=1M count=1500
+sudo dd if=/dev/urandom of=bigfile2 bs=1M count=390
+df -h
+sudo vgs 
+sudo pvs
+cat /proc/partitions 
+sudo -i
+cat /proc/partitions 
+sudo pvcreate /dev/sdc
+sudo pvs
+sudo vgs
+sudo vgextend 
+sudo vgextend vg_data /dev/sdc
+sudo vgs
+df -hT
+sudo lvextend -L +1G /dev/mapper/vg_data-lv_data
+sudo xfs_growfs /dev/mapper/vg_data-lv_data
+df -hT
+ls -la 
+mkdir testdir
+sudo mkdir testdir
+sudo touch testdir/testfile
+tree
+cd
+sudo xfsdump -f data.dump /data 
+ls -lah
+cd /data
+sudo rm -rf *
+ls -la 
+cd
+sudo umount /data
+sduo lvs
+sudo lvs
+lvremove /dev/mapper/vg_data-lv_data 
+sudo lvremove /dev/mapper/vg_data-lv_data 
+sudo lvcreate -L 2G -n lv_data vg_data
+mkfs.xfs /dev/mapper/vg_data-lv_data 
+sudo mkfs.xfs /dev/mapper/vg_data-lv_data 
+sudo mount /dev/mapper/vg_data-lv_data /data
+sudo xfsrestore -f data.dump /data
+cd /data
+tree
+free -m 
+cd 
+sudo vgs
+lvcreate -L 1G -n lv_swap vg_data
+sudo lvcreate -L 1G -n lv_swap vg_data
+sudo mkswap /dev/mapper/vg_data-lv_swap  
+sudo mkswap --help 
+sudo e2label /dev/vg_data/lv_swap MY_SWAP
+sudo mkswap -L MY_SWAP /dev/mapper/vg_data-lv_swap  
+sudo vi /etc/fstab 
+sudo swapon -s
+sudo swapon -a
+sudo swapon -s
+sudo swapoff -a
+sudo swapon -s
+sudo swapon -a
+sudo swapon -s
+sudo swapoff /dev/vg_data/lv-swap
+sudo swapoff /dev/vg_data/lv_swap
+sudo swapon -s
+ls -la /data
+ls -lha /data
+sudo mkswap /data/bigfile1 
+sudo chmod 0600 /data/bigfile1
+sudo swapon /data/bigfile1 
+sudo swapon -s
+ssh 20.224.171.119
+sudo vgs
+sudo lvcreate -L 100M -n lv-mirror -m1 vg_data 
+sudo lvcreate -L 50M -n lv-mirror -m1 vg_data 
+sudo lvs
+sudo swapoff -a 
+sudo umount /data
+sudo lvremove /dev/vg_data/lv_swap
+sudo lvremove /dev/vg_data/lv_data
+sudo vgs
+sudo pvs
+sudo vgremove vg_data
+sudo pvs
+sudo vgcreate vg_data /dev/sd[b-c] 
+sudo lvs
+sudo vgs
+sudo lvcreate -L 100M -m1 -n lv_mirror vg_data
+sudo lvs
+sudo lvs -o +devices
+sudo mkfs.xfs /dev/mapper/vg_data-lv_mirror
+sudo mount /dev/mapper/vg_data-lv_mirror /data
+df -h
+cd /data
+ls -la 
+sudo dd if=/dev/urandom of=bigfile1 bs=1M count=300
+sudo dd if=/dev/urandom of=bigfile1 bs=2M count=400
+df -h
+ls -la
+rm bigfile1 
+sudo dd if=/dev/urandom of=bigfile1 bs=2M count=20
+sudo dd if=/dev/urandom of=bigfile2 bs=2M count=10
+ls -lah
+cd
+sudo lvcreate -L 200M -n lv_data vg_data
+mkfs.xfs /dev/vg_data/lv_
+mkfs.xfs /dev/vg_data/lv_data 
+sudo mkfs.xfs /dev/vg_data/lv_data 
+sudo mkdir /important 
+sudo mv /data/* /important/
+ls -la /important/
+sudo lvs
+sudo mv /important/* /data/
+sudo mount /dev/mapper/vg_data-lv_data /important/
+sudo mv /data/* /important/
+cd /important/
+ls -la
+cd
+sudo lvs
+sudo lvcreate -L 200M -s -n lv_data_snap /dev/vg_data/lv_data 
+sudo lvs
+cd /important/
+rm bigfile
+sudo rm bigfile
+sudo rm bigfile1 bigfile2
+mkdir test
+sudo mkdir test
+sudo test file1
+cat /etc/ssh/sshd_config > sshconfig
+sudo cat /etc/ssh/sshd_config > sshconfig
+sudo cp -rp /etc/ssh/sshd_config  sshconfig
+ls -la 
+sudo lvs
+sudo watch -n1 lvs
+sudo dd if=/dev/urandom of=test123 count=100 bs=1M
+ls -la 
+sudo lvs
+cd
+lvconvert --merge /dev/vg_data/lv_data_snap 
+sudo lvconvert --merge /dev/vg_data/lv_data_snap 
+sudo umount /important 
+sudo lvs
+sudo lvchange --refresh /dev/vg_data/lv_data 
+sudo lvs
+sudo watch -n1  lvs
+sudo mount /dev/vg_data/lv_data /important/
+sudo ls -la /important/
+sudo lvcreate -L 200M -s -n lv_data_snap /dev/vg_data/lv_data 
+cd /important/
+sudo rm bigfile*
+sudo dd if=/dev/urandom of=bigfile2 bs=1M count=390
+sudo lvs
+cd
+sudo umount /important 
+sudo lvconvert --merge /dev/vg_data/lv_data_snap 
+sudo lvs
+sudo mount /dev/vg_data/lv_data /important/
+ls -la /important/
+sudo lvs
+uname -r
+grep -i crypt /boot/config-5.14.0-412.el9.x86_64 
+grep -i dm_crypt /boot/config-5.14.0-412.el9.x86_64 
+lsmod | grep cm_crypt
+lsmod | grep dm_crypt
+modprobe dm_crypt 
+sudo modprobe dm_crypt 
+lsmod | grep dm_crypt
+sudo rpm -qa | grep crypt
+dnf install cryptsetup
+sudo dnf install cryptsetup
+cryptsetup --version
+cryptsetup -y luksFormat /dev/vg_data/lv_data 
+sudo cryptsetup -y luksFormat /dev/vg_data/lv_data 
+sudo umount /important 
+sudo cryptsetup -y luksFormat /dev/vg_data/lv_data 
+sudo cryptsetup luksOpen /dev/vg_data/lv_data my-encrypted-data
+ls -la /dev/mapper/
+mkfs.xfs /dev/mapper/my-encrypted-data 
+sudo mkfs.xfs /dev/mapper/my-encrypted-data 
+sudo /secure-data
+sudo mkdir /secure-data
+sudo mount /dev/mapper/my-encrypted-data /secure-data/
+df -h
+sudo umount /secure-data 
+sudo cryptsetup luksClose my-encrypted-data 
+df -h
+sudo cryptsetup luksOpen /dev/vg_data/lv_data secure-data
+sudo mount /dev/mapper/secure-data /secure-data/
+ls -la /dev/mapper/
+df -h
+sudo vi /etc/crypttab 
+sudo cat /etc/crypttab; sudo vi /etc/fstab 
+df -h
+umount /secure-data 
+sudo umount /secure-data 
+sudo systemctl set-default graphical.target 
+history
+history | awk '$1 > 177' | cut -c 8- > /tmp/day2-history.txt
+for i in `seq 0 2`; do  echo "- - -" > /sys/class/scsi_host/host$i/scan; done
+lsblk 
+dnf install -y mdam
+dnf install -y mdadm
+mdadm --help
+man mdadm
+mdadm -E /dev/[b-e]
+mdadm -E /dev/sd[b-e]
+mdadm --create /dev/md5 --level=5 --raid-devices=3 /dev/sd[b-d] 
+mdadm -D /dev/md5
+mkfs.xfs /dev/md5 
+mkdir /raid5
+mount /dev/md5 /raid5/
+df -h
+mdadm --manage --add /dev/md5 /dev/sde
+mdadm -D /dev/md5
+ls -la /etc/mdadm.con
+blkid
+mdadm --detail --scan --verbose > /etc/mdadm.conf
+vi /etc/mdadm.conf
+df -h
+xfsrestore -f /home/student/data.dump /raid5
+ls -la /raid5/
+mdadm -D
+mdadm -D /dev/md5
+mdadm --manage --fail /dev/md5 /dev/sdc 
+mdadm -D /dev/md5
+watch -n1 mdadm -D /dev/md5
+umount /raid5 
+mdadm --stop /dev/md5
+mdadm -D /dev/md5
+mdadm --assemble /dev/md5
+mdadm -D /dev/md5
+mdadm --remove /dev/md5
+mdadm --zero-superblock /dev/sd[b-e]
+cat /proc/mdstat 
