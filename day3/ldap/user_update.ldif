@@ -1,0 +1,5 @@
+# test-user1, Users, lab.local
+dn: uid=test-user1,ou=Users,dc=lab,dc=local
+changetype: modify
+replace: homeDirectory
+homeDirectory: /home/test-user111

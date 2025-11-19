@@ -1,0 +1,14 @@
+dn: cn=test-user1,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: test-user1
+userPassword: {crypt}x
+gidNumber: 1004000
+
+dn: cn=test-user2,ou=Groups,dc=lab,dc=local
+objectClass: posixGroup
+objectClass: top
+cn: test-user2
+userPassword: {crypt}x
+gidNumber: 1005000
+

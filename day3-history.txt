@@ -1,0 +1,436 @@
+cat /proc/partitions 
+pvcreate /dev/sdb
+pvremove 
+pvremove /dev/sdb
+gdisk /dev/sdb
+pvcreate /dev/sdb1 
+pvcreate /dev/sdb2
+vgcreate vg1 /dev/sdb1
+vgcreate vg2 /dev/sdb2
+pvs
+vgs
+lvcreate -L 200M -m1 -n lv-mirror vg1
+vgremove vg2
+vgremove vg1
+vgs
+vgcreate /dev/sdb[1,2]
+vgcreate vg-mirror /dev/sdb[1,2]
+vgs
+lvcreate -L 200M -m1 -n lv-mirror vg-mirror
+lvs -a -o +devices 
+lsblk 
+lvconvert --help 
+lvconvert -m0 vg-mirror/lv-mirror /dev/sdb2
+lsblk
+lvremove /dev/mapper/vg-mirror-lv-mirror
+vgs
+lvremove /dev/vg-mirror/lv-mirror
+vgs
+lvs
+lvcreate -L 200M -m1 -n lv-mirror vg1
+lvcreate -L 200M -m1 -n lv-mirror vg-mirror
+lsblk
+lvconvert -m0 vg-mirror/lv-mirror /dev/sdb1 
+lsblk
+cd
+vi /etc/login.defs 
+cat /etc/passwd
+vi /etc/login.defs 
+vi /etc/default/grub 
+vi /etc/default/useradd 
+useradd test
+cat /etc/passwd | grep test
+ls -la /var/spool/mail/
+dnf install snapd -y
+dnf install snap -y
+dnf install epel-release
+dnf install snapd -y
+systemctl enable --now snapd.socket
+snap install john-the-ripper
+cd /snap/john-the-ripper/current/bin/
+cd /snap/john-the-ripper/current/
+john
+john --help
+passwd test 
+cat /etc/shadow | grep student
+cat /etc/shadow | grep student > test-password
+john test-password 
+cat /etc/shadow | grep test > test-password
+cat /etc/shadow | grep student > student-password
+john test-password 
+passwd test 
+cat /etc/shadow | grep test > test-password
+john test-password 
+id 
+id student 
+cat /etc/passwd
+ls -la /etc/shadow
+cat /etc/shadow
+chage -l 
+chage -l student
+passwd test
+chage -l student
+chage -l test
+chage --help
+chage -m 3 yrdy
+chage -m 3 test
+chage -M 14 test
+chage -l test
+chage -I 20 test
+chage -l test
+chage -E "2025-12-24" test
+chage -l test
+cat /etc/shadow | grep test
+chage -I -1 -m 0 -M 99999 -E -1 test
+cat /etc/shadow | grep test
+chage -l test
+chage -d0 test 
+chage -l test
+useradd -g student -uid 1100 -G ftp -d /tmp/test2 -s /bin/sh -c "Test user to test all params" test2 
+useradd -g student -u 1100 -G ftp -d /tmp/test2 -s /bin/sh -c "Test user to test all params" test2 
+cat /etc/passwd
+id test2
+usermod -G mail test2 
+id test2
+usermod -h
+usermod -aG ftp test2 
+id test2
+usermod -g test -s /bin/bash test2
+cat /etc/passwd
+id test2
+useradd test3
+id test
+id test3
+cat /etc/passwd
+ls -la /home/test3
+ls -la /etc/skel/
+mkdir /etc/custom-skel
+cd /etc/custom-skel
+vi script1.sh
+chmod +x script1.sh 
+touch lista_klientow.csv
+ln -s /tmp app1
+ls -la
+cd
+useradd -k /etc/custom-skel/ test4
+useradd -m -k /etc/custom-skel/ test4
+ls -al /home/test4
+vi /etc/login.defs 
+vi /etc/default/useradd 
+cat /etc/group
+q
+usermod -g student test3
+usermod -g student test4
+cat /etc/group
+id test4
+usermod -aG student test4
+usermod -aG student test3
+cat /etc/group
+groupadd test-group
+cat /etc/group
+groupdel test-group
+cat /etc/group
+userdel --help
+userdel -r test4
+userdel -r test3
+userdel -r test
+ls -al /home
+cat /etc/passwd
+ls -la /tmp; userdel -r test2 
+ls -al /tmp
+useradd test1
+userdel test1
+ls -la /home
+echo "securepass" | sha512
+echo "securepass" | sha512sum 
+openssl passwd -6 -salt xyz securepass
+cat /etc/shadow
+vi /etc/sudoers
+ls -la /etc/sudoers
+ls -la /etc/sudoers.d/
+groupadd finanse
+useradd -g finanse marzena 
+id marzena
+passwd
+passwd marzena
+useradd ola
+passwd ola
+vi /etc/sudoers.d/finanse 
+vi /etc/sudoers
+systemctl status chronyd
+ls -la
+touch plik1
+ls -la plik1 
+chmod 740 plik1
+ls -la plik1 
+chown root:student plik1
+ls -la plik1 
+ls -la 
+ls -la plik1
+touch plik2 
+ls -la plik2
+UMASK
+umask
+mkdir testdir
+ls -la testdir
+umask 0444
+touch plik3
+ls -la plik3
+mkdir testdir2
+ls -la testdir2
+umask 0022 
+chown ola:student plik3
+ls -la 
+ls -la $(which sudo)
+vi plik3 
+touch plik3
+vi plik3 
+ls -la 
+chmod 644 plik3
+ls -la 
+chmod 4644 plik3
+ls -la 
+./plik3
+cp -r plik3 plik4
+ls -la plik4 
+chmod +x plik4
+ls -la plik4 
+chmod 4755 plik4
+ls -la plik4 
+./plik4
+./plik3
+. ./plik3
+source plik3
+./plik3
+ls -la 
+chown ola:finanse testdir
+ls -la test
+ls -la testdir
+chmod 2755 testdir 
+ls -la testdir
+mkdir testdir/app1
+mkdir testdir/app2
+touch testdir/file1
+ls -la testdir
+ls -la /tmp
+touch /tmp/root-file
+ls -la /tmp/root-file
+groupadd ksiegowosc
+usermod -aG ksiegowosc marzena
+id marzena 
+id ola
+usermod -g ksiegowosc ola
+usermod -G finanse marzena 
+id marzena 
+id ola
+mkdir /tmp/faktury
+chown marzena:ksiegowosc /tmp/faktury/
+ls -la /tmp/faktury/
+touch /tmp/faktury/fv1
+touch /tmp/faktury/fv2
+ls -la /tmp/faktury/
+rm /tmp/faktury/fv2
+rm /tmp/faktury/fv1
+chmod 2755 /tmp/faktury/
+touch /tmp/faktury/fv1
+touch /tmp/faktury/fv2
+ls -la /tmp/faktury/
+chmod -R marzena:ksiegowosc /tmp/faktury/
+chown -R marzena:ksiegowosc /tmp/faktury/
+ls -la /tmp/faktury/
+touch /tmp/faktury/fv3
+ls -la /tmp/faktury/
+mkdir /tmp/acl1
+ls -la /tmp/acl1
+touch /tmp/aclexample
+ls -la /tmp/aclexample
+getfacl /tmp/aclexample
+getfacl -h
+getfacl /tmp/aclexample
+getfacl -c /tmp/aclexample
+ls -la /tmp/aclexample 
+chmod 640 /tmp/aclexample
+ls -la /tmp/aclexample 
+setfacl -m u:ola:r /tmp/aclexample
+getfacl -c /tmp/aclexample
+ls -la /tmp/aclexample
+setfacl -m g:finanse:rw /tmp/aclexample
+getfacl -c /tmp/aclexample
+ls -la /tmp/aclexample
+setfacl -h
+setfacl -b /tmp/aclexample 
+getfacl -c /tmp/aclexample
+ls -la /tmp/aclexample
+setfacl -m u:ola:r,m:r /tmp/aclexample
+getfacl -c /tmp/aclexample
+setfacl -m g:finanse:rw /tmp/aclexample
+getfacl -c /tmp/aclexample
+setfacl -m g:finanse:rw,m:r /tmp/aclexample
+getfacl -c /tmp/aclexample
+ls -la /tmp/faktury/
+setfacl -m d:u:marzena:6,d:g:finanse:r /tmp/faktury/
+getfacl /tmp/faktury/
+chmod 2750 /tmp/faktury/
+getfacl /tmp/faktury/
+setfacl -m d:u:marzena:6,d:g:finanse:r,d:o: /tmp/faktury/
+setfacl -m d:u:marzena:6,d:g:finanse:r,d:o:0 /tmp/faktury/
+getfacl /tmp/faktury/
+ls -la /tmp/faktury/
+touch /tmp/faktury/fv4
+ls -la /tmp/faktury/
+id ola
+ls -la /tmp/faktury/
+ls -la /tmp/faktury/nov
+getfacl /tmp/faktury/nov
+setfacl -m d:u:marzena:6,d:g:ksiegowosc:r,d:o:0 /tmp/faktury/
+getfacl /tmp/faktury/nov
+getfacl /tmp/faktury/dec
+setfacl -m d:u:marzena:6,d:g:ksiegowosc:rx,d:o:0 /tmp/faktury/
+getfacl /tmp/faktury/dec
+getfacl /tmp/faktury/
+getfacl /tmp/faktury/nov25
+getfacl /tmp/faktury/nov25/fv1
+usermod -g ksiegowosc ola
+id ola
+setfacl 
+setfacl -h
+setfacl -b /tmp/faktury/
+setfacl -k /tmp/faktury/
+ls -la  /tmp/faktury/
+setfacl -k /tmp/faktury/nov
+setfacl -k /tmp/faktury/nov25/
+setfacl -k /tmp/faktury/dec
+ls -la  /tmp/faktury/
+setfacl -b /tmp/faktury/dec
+setfacl -b /tmp/faktury/nov
+setfacl -b /tmp/faktury/nov25
+ls -la  /tmp/faktury/
+setfacl -m u:marzena:rw nov
+setfacl -m u:marzena:rw /tmp/faktury/nov
+setfacl -m u:marzena:rw /tmp/faktury/nov25
+ls -al /tmp/faktury/
+setfacl -b /tmp/faktury/*
+ls -al /tmp/faktury/
+vi /etc/ssh/sshd.deny
+vi /etc/pam.d/sshd
+vi /etc/ssh/sshd.deny 
+vi /etc/pam.d/sshd
+vi /etc/security/time.conf 
+cd /var/log/
+ls -la 
+less secure 
+passwd mariola
+vi /etc/security/time.conf 
+tail -f secure 
+vi /etc/security/time.conf 
+tail -f secure 
+vi /etc/security/time.conf 
+dnf install authselect-compat
+authconfig --enablefaillock --faillockargs="deny=3 unlock_time=60 even_deny_root" --update 
+vi /etc/pam.d/system-auth 
+authselect current
+vi /etc/security/faillock.conf 
+vi /etc/pam.d/system-auth 
+authselect check
+authselect current
+authselect enable-feature with-faillock 
+authselect current
+vi /etc/pam.d/system-auth 
+less /var/log/secure 
+tail -f /var/log/secure
+faillock --user marzena
+date
+faillock --user marzena
+tail -f /var/log/secure
+vi /etc/security/time.conf 
+tail -f /var/log/secure
+faillock --user marzena
+tail -f /var/log/secure
+faillock --user ola
+faillock --user ola --reset
+faillock --user ola
+vi /etc/pam.d/sshd 
+cd
+vi /etc/hosts
+ping centos9.lab.local
+ip a
+dnf install openldap-servers openldap-clients -y
+systemctl status slapd
+systemctl start slapd 
+systemctl status slapd
+slappasswd
+git clone https://github.com/mariano-italiano/lin2_Nov25.git
+cd lin2_Nov25/
+mkdir day3
+cd day3/
+cp -rp /etc/security/time.conf .
+cp -rp /etc/security/faillock.conf .
+cp -rp /etc/pam.d/sshd .
+cp -rp /etc/ssh/sshd.deny . 
+ls -la 
+mkdir ldap
+cd ldap/
+ls -la 
+vi adminpw.ldif
+ldapadd --help 
+ldapadd -Y EXTERNAL -H ldapi:/// -f adminpw.ldif 
+ls -la /etc/openldap/schema/
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif 
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
+ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
+cp -rp /etc/openldap/schema/inetorgperson.ldif /etc/openldap/schema/nis.ldif /etc/openldap/schema/cosine.ldif .
+ls -la
+slappasswd 
+vi ldapdomain.ldif
+ldapadd -Y EXTERNAL -H ldapi:/// -f ldapdomain.ldif
+vi domaintree.ldif
+ldapadd -x -D cn=Manager,dc=lab,dc=local -W -f domaintree.ldif 
+wget http://mirror.centos.org/altarch/7/os/aarch64/Packages/migrationtools-47-15.el7.noarch.rpm
+dnf install migrationtools
+dnf repolist
+wget https://www.rpmfind.net/linux/openmandriva/cooker/repository/x86_64/main/release/migrationtools-47-20-omv4090.noarch.rpm
+dnf localinstall migrationtools-47-20-omv4090.noarch.rpm -y
+dnf install perl
+cat /etc/passwd
+useradd test-user1
+useradd test-user2
+passwd test-user1
+passwd test-user2
+cat /etc/passwd|grep test-user
+cat /etc/passwd|grep test-user > users
+cat /etc/group|grep test
+cat /etc/group|grep test-user
+cat /etc/group|grep test-user > groups
+cd /usr/share/migrationtools/
+ls -l
+./migrate_passwd.pl ~/lin2_Nov25/day3/ldap/users ~/lin2_Nov25/day3/ldap/users.ldif 
+./migrate_group.pl ~/lin2_Nov25/day3/ldap/groups ~/lin2_Nov25/day3/ldap/groups.ldif 
+cd 
+cd lin2_Nov25/day3/ldap/
+ls -la 
+vi groups.ldif
+vi ldapdomain.ldif 
+vi domaintree.ldif 
+vi groups.ldif
+vi users.ldif 
+vi domaintree.ldif 
+vi users.ldif 
+ldapadd -x -D cn=Manager,dc=lab,dc=local -W -f groups.ldif 
+ldapadd -x -D cn=Manager,dc=lab,dc=local -W -f users.ldif 
+ldapsearch --help
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost 
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "objectclass=account"
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "objectclass=account" cn uid homeDirectory
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "cn=test*" cn 
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "objectclass=organizationalUnit"
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "(|(objectclass=organizationalUnit)(cn=test-user2))"
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "(&(objectclass=organizationalUnit)(cn=test-user2))"
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "(&(objectclass=organizationalUnit)(ou=Groups))"
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "cn:caseExactMatch:=Test-user1" 
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "cn:caseExactMatch:=test-user1" 
+vi user_update.ldif
+ldapmodify -x -D cn=Manager,dc=lab,dc=local -W -f user_update.ldif 
+ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "cn:caseExactMatch:=test-user1" 
+cd ..
+history
+history | awk '$1 > 32' | cut -c 8- > day3-history.txt
