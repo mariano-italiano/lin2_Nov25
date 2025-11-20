@@ -1,0 +1,396 @@
+systemctl status slapd
+dnf install freeipa-server 
+dnf install freeipa-server freeipa-server-dns freeipa-client 
+ipa-server-install --help 
+ipa-server-install --setup-dns
+klist
+kinit 
+klist 
+kdestroy 
+klist 
+ipa user-add jkowalski --first Jan --last=Kowalski --password
+kinit
+ipa user-add jkowalski --first Jan --last=Kowalski --password
+ipa 
+ipa --help 
+ipa help 
+ipa help topics
+ipa help user
+ipa help server 
+ps -ef 
+ps --help 
+man ps
+ps -ely
+ps -ef 
+ps -eL
+ps aux 
+ps axo pid,ppid,pcpu,pmem,comm
+ps -edf 
+ps -edf | grep tomcat
+ps -U student
+ps -u student
+pgrep tomcat
+pgrep named
+ps -edf | grep named
+pgrep -v named
+pgrep -v named -l
+pgrep -v named -u root -l
+ps -edf
+ps aux
+ps -edlf
+cd lin2_Nov25/
+mkdir day4 
+cd day4/
+vi script.sh
+chmod +x script.sh 
+nice -n -10 ./script.sh 
+cat /tmp/script.log 
+kill -l
+ps -ef |grep student
+kill -19 12966
+kill -18 12966
+kill -l
+uptime -d
+vi lab15.sh
+chmod +x lab15.sh
+./lab15.sh & 
+vi lab15.sh 
+kill -15 13016
+vi lab15.sh 
+./lab15.sh & 
+ps -ef | grep 13038
+kill -2 13038
+kill -15 13038 
+./lab15.sh 
+vi lab15.sh 
+./lab15.sh 
+./lab15.sh &
+kill -15 13105
+ps -ef | grep lab15
+kill -15 13105
+kill -9 13105
+sysctl -a 
+sysctl -a | wc -l
+sysctl -a | grep forward
+sysctl -a | grep kernel.pid_max
+sysctl -a | grep kernel.shm
+sysctl -a | grep kernel.thread
+sysctl -a | grep icmp_echo
+sysctl -a | grep ttl
+ping wp.pl
+nmtui-edit 
+nmcli connection down ens33 ; nmcli connection up ens33 
+ping wp.pl
+nslookup wp.pl
+vi /etc/resolv.conf 
+nslookup wp.pl
+ping wp.pl
+tracepath -I wp.pl
+tracepath wp.pl
+dnf install traceroute
+dnf clean all
+dnf repolist
+dnf provides traceroute
+ping onet.pl
+ping wp.pl
+sysctl -a | grep ttl
+sysctl -a | grep vm. 
+cta /etc/group 
+cat /etc/group 
+sysctl -a | grep vm. 
+cd /proc/sys
+ls -la 
+cd vm
+ls -la 
+cat swappiness
+echo 60 > swappiness 
+cat swappiness
+sysctl -a | grep vm.swap
+vi /etc/sysctl.conf 
+sysctl -a | grep vm.swap
+systemctl --system
+sysctl --system
+sysctl -a | grep vm.swap
+sysctl -p
+sysctl --help
+vi /etc/sysctl.conf 
+sysctl -a | grep ttl
+vi /etc/sysctl.conf 
+sysctl --system
+sysctl -a | grep echo_ignore
+vi /etc/sysctl.conf 
+sysctl --system
+vi /etc/sysctl.conf 
+sysctl --system
+lsmod 
+lsmod | wc -l
+cd
+find /lib/modules/$(uname -r) -type f -name "*.ko*" 
+modinfo overlay
+modinfo vmxnet3
+lsmod | grep overlay
+lsmod | grep vmxnet3
+modprobe vmxnet3 
+lsmod | grep vmxnet3
+modprobe --help 
+modprobe -r vmxnet3 
+lsmod | grep vmxnet3
+insmod vmxnet3 
+insmod /lib/modules/5.14.0-412.el9.x86_64/kernel/drivers/net/vmxnet3/vmxnet3.ko.xz
+lsmod | grep vmxnet3
+rmmod vmxnet3
+lsmod | grep vmxnet3
+ls -la /etc/mod*
+vi /etc/modprobe.d/tuned.conf 
+vi /etc/modprobe.d/firewalld-sysctls.conf 
+lsmod | grep nf_conntrack
+vi /etc/modprobe.d/firewalld-sysctls.conf 
+vi /etc/modprobe.d/vmxnet3.conf
+logger "moj test z centos9 dla szkolenia linux admin2"
+journalctl 
+less /var/log/messages 
+man logger
+logger "[skrypt.sh] INFO: moj test z centos9 dla szkolenia linux admin2"
+journalctl 
+ls -la /var/log/dmes
+ls -la /var/log/
+less boot.log
+less /var/log/boot.log
+dmesg 
+dmesg -t
+systemctl
+dmesg -T
+dmesg -h
+dmesg -k
+journalctl 
+cd /var/run/
+ls 
+cd /run/log/
+ls -la 
+cd journal/
+ls -la
+cd 13b58c66f2c344ffa21725d154e6c6da/
+ls -la
+ls -lah
+cd /var/log
+mkdir journal 
+vi /etc/systemd/journald.conf 
+systemctl restart systemd-journald
+ls -la journal/
+journalctl -u chronyd
+journalctl -u sshd
+which sshd
+journalctl /sbin/sshd
+journalctl -b
+journalctl --since="-60min"
+journalctl --since="today"
+journalctl --since="-10min"
+journalctl -p err 
+journalctl -f
+journalctl -o verbose -u sshd
+journalctl --since="-240min" UNIT=sshd.service
+journalctl --help
+cd
+cd /var/log
+ls -l a
+ls -la
+vi /etc/ssh/sshd_config
+systemctl restart sshd
+ls -la 
+vi /etc/rsyslog.d/sshd.conf
+systemctl restart rsyslog.service 
+systemctl restart sshd
+ls -la 
+less sshd.log 
+vi /etc/rsyslog.d/sshd.conf
+less sshd.log 
+ls -la sshd.log 
+cp -rp /etc/logrotate.d/httpd /etc/logrotate.d/sshd
+vi /etc/logrotate.d/sshd
+ls -lah 
+vi /etc/logrotate.d/sshd
+systemctl restart logrotate.service 
+systemctl status logrotate
+logrotate -d /etc/logrotate.d/sshd 
+vi /etc/logrotate.d/sshd
+logrotate -d /etc/logrotate.d/sshd 
+ls -la 
+ls -lah 
+logrotate -f /etc/logrotate.d/sshd 
+ls -lah 
+systemctl restart logrotate.service 
+systemctl status logrotate
+vi /etc/hosts
+ping wp.pl
+cat /etc/resolv.conf 
+vi /etc/nsswitch.conf
+ping wp.pl
+ip
+ifconfig 
+ip addr add 192.168.1.190/24 dev ens33 
+ip a s
+ifconfig 
+nmcli connection down ens33 ; nmcli connection up  ens33 
+ip a s
+ip link s
+ip route s 
+ip route add 172.16.0.0/24 via 192.168.1.223
+ip route s 
+route -n
+nmcli connection down ens33 ; nmcli connection up  ens33 
+route -n
+nmcli connection show 
+nmcli device show
+nmcli device status 
+nmcli connection add con-name dmz ifname ens33 type ethernet ip4 192.168.1.190 gw4 192.168.1.1 
+nmcli connection show 
+nmcli device show
+nmcli connection modify dmz ifname ens37
+nmcli connection show 
+ip a s
+nmcli connection down dmz 
+ip a s
+nmcli connection show 
+nmcli c s 
+nmcli c edit dmz 
+cd
+ls -la .nmcli-history 
+cat .nmcli-history
+nmcli connection show
+nmcli device status
+nmcli device show
+nmcli connection up dmz 
+nmcli device show
+nmcli connection status
+nmcli connection show
+nmtui
+nmcli device show
+nmtui-edit
+nmcli connection show
+nmcli device status
+nmcli device show
+nmcli device show ens37
+nmtuid-edit
+nmtui-edit
+nmcli connection modify dmz type bond
+nmcli connection delete dmz
+nmcli connection add con-name bond ifname ens37 type bond ipv4.addresses 172.16.0.90/24 ipv4.gw 172.16.0.1
+nmcli connection add con-name bond ifname ens37 type bond ipv4.addresses 172.16.0.90/24 ipv4.gateway 172.16.0.1
+nmcli connection show
+nmcli connection up bond 
+iptables -L -v -n
+systemctl status iptables
+iptables -L -v -n
+systemctl status firewalld.service 
+systemctl start firewalld.service 
+systemctl status firewalld.service 
+firewall-cmd --state 
+firewall-cmd --list-all
+firewall-cmd --get-zones
+firewall-cmd --list-all --zone trusted
+firewall-cmd --list-all --zone work
+firewall-cmd --list-all --zone home
+firewall-cmd --get-active-zones 
+firewall-cmd --add-service=https 
+firewall-cmd --list-all
+firewall-cmd --reload 
+firewall-cmd --list-all
+firewall-cmd --add-service=https --permanent  
+firewall-cmd --list-all
+firewall-cmd --reload 
+firewall-cmd --list-all
+firewall-cmd --add-port=8080/tcp --permanent  
+firewall-cmd --reload 
+firewall-cmd --list-all
+ls -la /usr/lib/firewalld/
+ls -la /usr/lib/firewalld/zones/
+ls -la /usr/lib/firewalld/services/
+vi  /usr/lib/firewalld/services/squid.xml 
+cp -rp /usr/lib/firewalld/services/squid.xml /usr/lib/firewalld/services/marcin-service.xml
+vi /usr/lib/firewalld/services/marcin-service.xml
+systemctl restart firewalld.service 
+firewall-cmd --add-service=marcin-service --permanent
+firewall-cmd --reload 
+firewall-cmd --list-all
+firewall-cmd --permanent --new-service=appX --set-description="My APP X" 
+firewall-cmd --permanent --service=appX --add-port=443 
+firewall-cmd --permanent --service=appX --add-port=443/tcp 
+firewall-cmd --permanent --service=appX --add-protocol=icmp 
+firewall-cmd --permanent --service=appX --set-destination=ipv4:192.168.1.100/24
+firewall-cmd --reload 
+firewall-cmd --add-service=appX --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+firewall-cmd --remove-port=8080/tcp
+firewall-cmd --remove-service=appZ
+firewall-cmd --remove-service=appX
+firewall-cmd --remove-port=8080/tcp --permanent 
+firewall-cmd --remove-service=appX --remove-service=appZ
+firewall-cmd --remove-service=appX --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+netstat -vatnlp
+netstat -vatnlp | grep 80
+netstat -vatnlp | grep 9090
+firewall-cmd --zone=public --add-forward-port=port=9090:proto=tcp:toport=80:toaddr=192.168.1.90 
+firewall-cmd --zone=public --add-forward-port=port=9090:proto=tcp:toport=80:toaddr=192.168.1.90 --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+vi /etc/sysctl.conf 
+sysctl -a | grep forward
+firewall-cmd --zone=public --add-forward-port=port=9090:proto=tcp:toport=443:toaddr=192.168.1.90 --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all
+firewall-cmd --new-zone development --permanent
+firewall-cmd --reload 
+firewall-cmd --list-all --zone development 
+firewall-cmd --add-port=9090/tcp --zone development --permanent 
+firewall-cmd --add-service=dns --zone development --permanent 
+firewall-cmd --add-service=mysql --zone development --permanent 
+firewall-cmd --add-service=nfs --zone development --permanent 
+firewall-cmd --add-service=ssh --zone development --permanent 
+firewall-cmd --add-service=https --zone development --permanent 
+firewall-cmd --help 
+firewall-cmd --delete-zone development 
+firewall-cmd --delete-zone development --permanent 
+firewall-cmd --reload 
+firewall-cmd --new-zone development --permanent
+firewall-cmd --new-service=myWebApp --set-description="My Web App Service"
+firewall-cmd --new-service=myWebApp --set-description="My Web App Service" --permanent 
+firewall-cmd --service=myWebApp --add-service=https --zone development --permanent 
+firewall-cmd --reload 
+firewall-cmd --service=myWebApp --add-service=https --zone development --permanent 
+firewall-cmd --service=myWebApp --add-port=443/tmp --permanent 
+firewall-cmd --service=myWebApp --add-port=443/tcp --permanent 
+firewall-cmd --service=myWebApp --add-port=53/tcp --permanent 
+firewall-cmd --service=myWebApp --add-port=53/udp --permanent 
+firewall-cmd --service=myWebApp --add-port=3306/tcp --permanent 
+firewall-cmd --service=myWebApp --add-port=22/tcp --permanent 
+firewall-cmd --service=myWebApp --add-port=2049/tcp --permanent 
+firewall-cmd --service=myWebApp --add-port=2049/udp --permanent 
+firewall-cmd --service=myWebApp --add-port=9090/tcp --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all --zone development 
+firewall-cmd --service=myWebApp --zone development --permanent 
+firewall-cmd --add-service=myWebApp --zone development --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all --zone development 
+cat /etc/firewalld/services/myWebApp.xml
+firewall-cmd --service=myWebApp --set-destination=ipv4:192.168.1.100/32 --permanent 
+firewall-cmd --reload 
+firewall-cmd --list-all --zone development 
+cat /etc/firewalld/services/myWebApp.xml
+firewall-cmd --info-service=myWebApp 
+systemd-analyze 
+systemctl get-default 
+systemctl set-default multi-user.target 
+systemd-analyze blame
+cd lin2_Nov25/day4/
+cp -rp /etc/logrotate.d/sshd .
+cp -rp /etc/rsyslog.d/sshd.conf .
+mv sshd.conf rsyslog-sshd.conf
+mv sshd logrotate-sshd
+ls -la 
+cd ..
+history
+history | awk '$1 > 487' | cut -c 8- > day4-history.txt

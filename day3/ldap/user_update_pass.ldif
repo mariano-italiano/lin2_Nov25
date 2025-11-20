@@ -1,0 +1,5 @@
+# test-user1, Users, lab.local
+dn: uid=test-user1,ou=Users,dc=lab,dc=local
+changetype: modify
+replace: userPassword
+userPassword: {SSHA}5K/ubBp67DrNvE8ZGs3IjJp3uM+q7tun 
