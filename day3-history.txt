@@ -434,3 +434,12 @@ ldapsearch -x -b dc=lab,dc=local -H ldap://localhost "cn:caseExactMatch:=test-us
 cd ..
 history
 history | awk '$1 > 32' | cut -c 8- > day3-history.txt
+
+
+
+# NA REDHAT CLIENT 
+authconfig-tui
+authconfig --enablemkhomedir --update
+getent passwd test-user1
+less /var/log/secure
+tail -f /var/log/secure
