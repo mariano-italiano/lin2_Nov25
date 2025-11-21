@@ -125,3 +125,135 @@ vi /etc/selinux/config
 history 
 history | awk '$1 > 25' | cut -c 8- 
 history | awk '$1 > 25' | cut -c 8- >> day5-history.txt 
+ls -Z
+ls -laZ
+ls -laZ /tmp
+ps -Zaux
+id -Z
+id -Z student
+id student
+id student -Z
+su - student
+dnf install setroubleshoot-server policycoreutils-python
+dnf install setroubleshoot-server policycoreutils-python-devel
+semanage port -l | grep ssh
+vi /etc/ssh/sshd_config
+systemctl restart sshd
+systemctl status sshd
+less /var/log/messages
+sealert -l ab579ee8-900d-4215-b71d-af1ef6b439bd
+semanage port -a -t ssh_port_t -p tcp 2222
+semanage port -l | grep ssh
+systemctl restart sshd
+systemctl status sshd
+journalctl -u setroubleshoot
+journalctl
+journalctl -u setroubleshoot
+semanage port --help
+semanage port -m -t ssh_port_t -p tcp 9999
+semanage port -l | grep ssh
+semanage port -d -t ssh_port_t -p 9999
+semanage port -d -t ssh_port_t -p tcp 9999
+semanage port -l | grep ssh
+semanage port -l
+semanage port -l | grep 8080
+semanage fcontext -l
+semanage fcontext -l |wc -l
+getsebool
+getsebool -a
+getsebool -a | wc -l
+getsebool -a | grep -i nfs
+getsebool -a | grep -i virtualbox
+semanage boolean -l
+getsebool -a | grep -i http
+setsebool --help
+setsebool -P httpd_run_ipa=1
+getsebool -a | grep -i http
+cd /var/log/
+less audit/
+less audit/audit.log
+journalctl -t setroubleshoot
+journalctl --help
+journalctl -t setroubleshoot
+dnf group install "Basic Web Server"
+vi /etc/httpd/conf/httpd.conf
+mkdir /web/docs -p
+ls -laZ /var/ww/html
+ls -laZ /var/www/html
+ls -laZ /web/docs/
+vi /etc/hosts
+vi /etc/httpd/conf.d/account.conf
+mkdir /web/docs/account.lab.local
+vi /web/docs/account.lab.local/index.html
+systemctl start httpd
+systemctl status http
+systemctl status httpd
+vi /etc/httpd/conf.d/ssl.conf
+vi /etc/httpd/conf/httpd.conf
+mv /etc/httpd/conf.d/ssl.conf /tmp/
+systemctl restart httpd
+systemctl status httpd
+journalctl -t setroubleshoot
+less /var/log/messages
+sealert -l 080c0b1b-f143-44fc-8cad-a4880a4c5cb1
+ls -lZ /var/www/html
+ls -laZ /var/www/html
+semanage fcontext -a -t httpd_sys_content_t "/web/docs/(/.*)?"
+semanage fcontext -l | grep web
+ls -laZ /web/docs
+restorecon -Rv /web/docs
+ls -laZ /web/docs
+ls -laZ /web/docs/
+restorecon -Rv /web/docs
+getenforce
+restorecon -Rv /web/docs
+semanage fcontext -l | grep web
+restorecon -Rv /web/docs
+restorecon -Rv /var/www/html/
+ls -la
+ls -la /var/www/html/
+touch /var/www/html/index.html
+ls -la /var/www/html/
+ls -la /var/www/html/ -Z
+cd
+cd /web/docs/
+restorecon -R /web/docs/
+ls -laZ /web/docs/
+reboot
+semanage fcontext -l | grep /web/doc
+restorecon -Rv /web/docs
+ls -laZ /web/docs/
+chcon -R -t httpd_sys_content_t /web/docs/
+ls -laZ /web/docs/
+ls -laZ /web/docs/account.lab.local/index.html
+dnf install mariadb-server
+mkdir /mariadb
+vi /etc/my.cnf.d/mariadb-server.cnf
+ls -laZ /var/lib/mysql
+ls -laZ /mariadb/
+systemctl start mariadb.service
+systemctl status mariadb.service
+chown mysql: /mariadb/
+systemctl start mariadb.service
+systemctl status mariadb.service
+getenforce
+systemctl stop mariadb
+setenforce 1
+systemctl start mariadb.service
+systemctl status mariadb.service
+less /var/log/messages
+sealert -l 09eb7538-12e8-40a8-b3c0-b7e89817be00
+semanage fcontext -a -t mysqld_db_t "/mariadb(/.*)?"
+restorecon -Rv /mariadb
+systemctl start mariadb
+systemctl status mariadb
+vi /etc/selinux/config
+semanage fcontext -l | grep /mariadb
+systemctl status cockpit.socket
+systemctl start cockpit.socket
+systemctl status cockpit.socket
+passwd
+systemctl restart cockpit
+vi /etc/hosts
+ping lab.local
+
